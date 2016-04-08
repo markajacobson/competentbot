@@ -168,7 +168,15 @@ public class OverBot {
 						minutetimer.run();
 					}
 					break;
-				
+					
+				case "points":
+					post(senderName.concat(", you have ").concat((String.valueOf(getPoints(senderName))).concat(" points!")));
+					break;
+					
+				case "hours":
+					post(senderName.concat(", you have watched for ".concat(String.valueOf((int) getHours(senderName))).concat(" hours!")));
+					break;
+					
 				default:
 					break;
 			}
@@ -262,6 +270,18 @@ public class OverBot {
 		for (User u : chanbot.getUsers(mainChan)){
 			System.out.println(u.getNick());
 		}
+	}
+	
+	public int getPoints(String user){
+		System.out.println(user.toLowerCase().concat(".points"));
+		int userpoints = Integer.parseInt(users.getProperty(user.toLowerCase().concat(".points"), "0"));
+		return userpoints;
+	}
+	
+	public double getHours(String user){
+		System.out.println(user.toLowerCase().concat(".hours"));
+		double userhours = Double.parseDouble(users.getProperty(user.toLowerCase().concat(".hours"), "0"));
+		return userhours;
 	}
 	
 	public OverBot(String botname, String channel, String whisperchannel, String oauth, String point) {
